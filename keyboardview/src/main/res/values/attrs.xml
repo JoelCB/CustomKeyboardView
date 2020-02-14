@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="KeyboardView">
+
+        <attr name="type" format="enum">
+            <enum name="email" value="0"/>
+            <enum name="simple_text" value="1"/>
+        </attr>
+
+        <attr name="keyTextSize" format="dimension"/>
+        <attr name="keyHeight" format="dimension"/>
+        <attr name="keyWidth" format="dimension"/>
+
+
+        <attr name="keyboardBackgroundColor" format="color" />
+        <attr name="primaryKeyColor" format="color" />
+        <attr name="primaryKeyTextColor" format="color" />
+
+        <attr name="secondaryKeyColor" format="color"/>
+        <attr name="secondaryKeyTextColor" format="color"/>
+    </declare-styleable>
+</resources>

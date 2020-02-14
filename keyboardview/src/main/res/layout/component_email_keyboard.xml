@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/keyboardRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:backgroundTint="#1D1D1D"
+    android:clickable="true"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/lyLineHelp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/button_gmail"
+            style="@style/KeyboardkeyHelpButton"
+            android:layout_weight="1"
+            android:text="gmail.com" />
+
+        <View
+            android:id="@+id/divider4"
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="#A3A2A2" />
+
+        <Button
+            android:id="@+id/button_hotmail"
+            style="@style/KeyboardkeyHelpButton"
+            android:layout_weight="1"
+            android:text="hotmail.com" />
+
+        <View
+            android:id="@+id/divider5"
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="#A3A2A2" />
+
+        <Button
+            android:id="@+id/button_outlook"
+            style="@style/KeyboardkeyHelpButton"
+            android:layout_weight="1"
+            android:text="outlook.com" />
+
+        <View
+            android:id="@+id/divider6"
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="#A3A2A2" />
+
+        <Button
+            android:id="@+id/button_yahoo"
+            style="@style/KeyboardkeyHelpButton"
+            android:layout_weight="1"
+            android:text="yahoo.es" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lyLine1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_1"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="1" />
+
+        <Button
+            android:id="@+id/button_2"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="2" />
+
+        <Button
+            android:id="@+id/button_3"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="3" />
+
+        <Button
+            android:id="@+id/button_4"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="4" />
+
+        <Button
+            android:id="@+id/button_5"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="5" />
+
+        <Button
+            android:id="@+id/button_6"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="6" />
+
+        <Button
+            android:id="@+id/button_7"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="7" />
+
+        <Button
+            android:id="@+id/button_8"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="8" />
+
+        <Button
+            android:id="@+id/button_9"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="9" />
+
+        <Button
+            android:id="@+id/button_0"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="0" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lyLine2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_q"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="q" />
+
+        <Button
+            android:id="@+id/button_w"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="w" />
+
+        <Button
+            android:id="@+id/button_e"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="e" />
+
+        <Button
+            android:id="@+id/button_r"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="r" />
+
+        <Button
+            android:id="@+id/button_t"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="t" />
+
+        <Button
+            android:id="@+id/button_y"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="y" />
+
+        <Button
+            android:id="@+id/button_u"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="u" />
+
+        <Button
+            android:id="@+id/button_i"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="i" />
+
+        <Button
+            android:id="@+id/button_o"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="o" />
+
+        <Button
+            android:id="@+id/button_p"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="p" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lyLine3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_a"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="a" />
+
+        <Button
+            android:id="@+id/button_s"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="s" />
+
+        <Button
+            android:id="@+id/button_d"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="d" />
+
+        <Button
+            android:id="@+id/button_f"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="f" />
+
+        <Button
+            android:id="@+id/button_g"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="g" />
+
+        <Button
+            android:id="@+id/button_h"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="h" />
+
+        <Button
+            android:id="@+id/button_j"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="j" />
+
+        <Button
+            android:id="@+id/button_k"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="k" />
+
+        <Button
+            android:id="@+id/button_l"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="l" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lyLine4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_z"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="z" />
+
+        <Button
+            android:id="@+id/button_x"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="x" />
+
+        <Button
+            android:id="@+id/button_c"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="c" />
+
+        <Button
+            android:id="@+id/button_v"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="v" />
+
+        <Button
+            android:id="@+id/button_b"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="b" />
+
+        <Button
+            android:id="@+id/button_n"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="n" />
+
+        <Button
+            android:id="@+id/button_m"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:text="m" />
+
+        <ImageButton
+            android:id="@+id/button_delete"
+            style="@style/KeyboardkeyStyleDarkButton"
+            android:src="@drawable/ic_key_remove"
+            android:tint="#A3A2A2" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lyLine5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_guion"
+            style="@style/KeyboardkeyStyleDarkButton"
+            android:text="-" />
+
+        <Button
+            android:id="@+id/button_barra"
+            style="@style/KeyboardkeyStyleDarkButton"
+            android:text="_" />
+
+        <Button
+            android:id="@+id/button_arroba"
+            style="@style/KeyboardkeyStyleDarkButton"
+            android:text="\@" />
+
+        <Button
+            android:id="@+id/button_punto"
+            style="@style/KeyboardkeyStyleDarkButton"
+            android:text="." />
+
+        <Button
+            android:id="@+id/button_puntoCom"
+            style="@style/KeyboardkeyStyleDarkButton"
+            android:text=".com" />
+
+        <Button
+            android:id="@+id/button_puntoEs"
+            style="@style/KeyboardkeyStyleDarkButton"
+            android:layout_weight="1"
+            android:text=".es" />
+
+    </LinearLayout>
+
+</LinearLayout>
