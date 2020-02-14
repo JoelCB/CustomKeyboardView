@@ -25,7 +25,6 @@
         app:keyHeight="30dp"
         app:keyTextSize="10dp"
         app:keyWidth="30dp"
-        app:keyboardBackgroundColor="#4F00BCD4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
