@@ -157,7 +157,7 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener {
             layoutParams.width = width;
             layoutParams.height = height;
 
-            findViewById(R.id.keyboardRoot).setBackgroundTintList(ColorStateList.valueOf(background));
+            getRootView().setBackgroundTintList(ColorStateList.valueOf(background));
 
             if(view.getBackgroundTintList().getDefaultColor() == Color.parseColor(DEFAULT_PRIMARY_COLOR)) {
                 view.setBackgroundTintList(ColorStateList.valueOf(primaryColor));
