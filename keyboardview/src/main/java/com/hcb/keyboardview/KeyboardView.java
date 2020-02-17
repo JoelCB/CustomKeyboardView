@@ -161,21 +161,28 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener {
 
                 getRootView().setBackgroundTintList(ColorStateList.valueOf(background));
 
-                if (view.getBackgroundTintList().getDefaultColor() == Color.parseColor(DEFAULT_PRIMARY_COLOR)) {
-                    view.setBackgroundTintList(ColorStateList.valueOf(primaryColor));
+                if(view.getBackgroundTintList() != null) {
+                    if (view.getBackgroundTintList().getDefaultColor() == Color.parseColor(DEFAULT_PRIMARY_COLOR)) {
+                        view.setBackgroundTintList(ColorStateList.valueOf(primaryColor));
 
-                    if (view instanceof Button) {
-                        ((Button) view).setTextColor(ColorStateList.valueOf(primaryTextColor));
-                    } else {
-                        ((ImageButton) view).setImageTintList(ColorStateList.valueOf(primaryTextColor));
-                    }
-                } else if (view.getBackgroundTintList().getDefaultColor() == Color.parseColor(DEFUALT_SECONDARY_COLOR)) {
-                    view.setBackgroundTintList(ColorStateList.valueOf(secundaryColor));
+                        if (view instanceof Button) {
+                            ((Button) view).setTextColor(ColorStateList.valueOf(primaryTextColor));
+                        } else {
+                            ((ImageButton) view).setImageTintList(ColorStateList.valueOf(primaryTextColor));
+                        }
+                    } else if (view.getBackgroundTintList().getDefaultColor() == Color.parseColor(DEFUALT_SECONDARY_COLOR)) {
+                        view.setBackgroundTintList(ColorStateList.valueOf(secundaryColor));
 
-                    if (view instanceof Button) {
-                        ((Button) view).setTextColor(ColorStateList.valueOf(secundaryTextColor));
+                        if (view instanceof Button) {
+                            ((Button) view).setTextColor(ColorStateList.valueOf(secundaryTextColor));
+                        } else {
+                            ((ImageButton) view).setImageTintList(ColorStateList.valueOf(secundaryTextColor));
+                        }
                     } else {
-                        ((ImageButton) view).setImageTintList(ColorStateList.valueOf(secundaryTextColor));
+                        layoutParams.width = LayoutParams.MATCH_PARENT;
+                        if (view instanceof Button) {
+                            ((Button) view).setTextColor(ColorStateList.valueOf(secundaryTextColor));
+                        }
                     }
                 } else {
                     layoutParams.width = LayoutParams.MATCH_PARENT;
