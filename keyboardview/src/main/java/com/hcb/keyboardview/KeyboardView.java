@@ -7,6 +7,7 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.SparseArray;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -140,55 +141,59 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener {
             } else {
                 if (child != null) {
                     child.setOnClickListener(this);
-                    aplyStyle(child);
+                    applyStyle(child);
                 }
             }
         }
     }
 
-    private void aplyStyle(View view) {
-        if(view instanceof Button || view instanceof ImageButton) {
-            if(view instanceof Button) {
-                Button button = (Button) view;
-                button.setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSize);
-            }
-
-            ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-            layoutParams.width = width;
-            layoutParams.height = height;
-
-            getRootView().setBackgroundTintList(ColorStateList.valueOf(background));
-
-            if(view.getBackgroundTintList().getDefaultColor() == Color.parseColor(DEFAULT_PRIMARY_COLOR)) {
-                view.setBackgroundTintList(ColorStateList.valueOf(primaryColor));
-
-                if(view instanceof Button) {
-                    ((Button) view).setTextColor(ColorStateList.valueOf(primaryTextColor));
-                } else {
-                    ((ImageButton) view).setImageTintList(ColorStateList.valueOf(primaryTextColor));
+    private void applyStyle(View view) {
+        try {
+            if (view instanceof Button || view instanceof ImageButton) {
+                if (view instanceof Button) {
+                    Button button = (Button) view;
+                    button.setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSize);
                 }
-            } else if (view.getBackgroundTintList().getDefaultColor() == Color.parseColor(DEFUALT_SECONDARY_COLOR)) {
-                view.setBackgroundTintList(ColorStateList.valueOf(secundaryColor));
 
-                if(view instanceof Button) {
-                    ((Button) view).setTextColor(ColorStateList.valueOf(secundaryTextColor));
+                ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+                layoutParams.width = width;
+                layoutParams.height = height;
+
+                getRootView().setBackgroundTintList(ColorStateList.valueOf(background));
+
+                if (view.getBackgroundTintList().getDefaultColor() == Color.parseColor(DEFAULT_PRIMARY_COLOR)) {
+                    view.setBackgroundTintList(ColorStateList.valueOf(primaryColor));
+
+                    if (view instanceof Button) {
+                        ((Button) view).setTextColor(ColorStateList.valueOf(primaryTextColor));
+                    } else {
+                        ((ImageButton) view).setImageTintList(ColorStateList.valueOf(primaryTextColor));
+                    }
+                } else if (view.getBackgroundTintList().getDefaultColor() == Color.parseColor(DEFUALT_SECONDARY_COLOR)) {
+                    view.setBackgroundTintList(ColorStateList.valueOf(secundaryColor));
+
+                    if (view instanceof Button) {
+                        ((Button) view).setTextColor(ColorStateList.valueOf(secundaryTextColor));
+                    } else {
+                        ((ImageButton) view).setImageTintList(ColorStateList.valueOf(secundaryTextColor));
+                    }
                 } else {
-                    ((ImageButton) view).setImageTintList(ColorStateList.valueOf(secundaryTextColor));
+                    layoutParams.width = LayoutParams.MATCH_PARENT;
+                    if (view instanceof Button) {
+                        ((Button) view).setTextColor(ColorStateList.valueOf(secundaryTextColor));
+                    }
                 }
+
+                if (view.getId() == R.id.button_delete || view.getId() == R.id.button_puntoCom || view.getId() == R.id.button_puntoEs) {
+                    layoutParams.width = (int) (((float) height) * 1.5);
+                }
+
+                view.setLayoutParams(layoutParams);
             } else {
-                layoutParams.width = LayoutParams.MATCH_PARENT;
-                if(view instanceof Button) {
-                    ((Button) view).setTextColor(ColorStateList.valueOf(secundaryTextColor));
-                }
+                view.setBackgroundTintList(ColorStateList.valueOf(secundaryTextColor));
             }
-
-            if(view.getId() == R.id.button_delete || view.getId() == R.id.button_puntoCom || view.getId() == R.id.button_puntoEs) {
-                layoutParams.width = (int) (((float)height) * 1.5);
-            }
-
-            view.setLayoutParams(layoutParams);
-        } else {
-            view.setBackgroundTintList(ColorStateList.valueOf(secundaryTextColor));
+        } catch (Exception e) {
+            Log.e("KeyboardError", "Error ocurred: " + e.getMessage());
         }
     }
 
