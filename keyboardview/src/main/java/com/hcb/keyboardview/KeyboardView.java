@@ -98,7 +98,7 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener {
         keyValues.put(R.id.button_q, "q");
         keyValues.put(R.id.button_w, "w");
         keyValues.put(R.id.button_e, "e");
-        keyValues.put(R.id.button_r, "t");
+        keyValues.put(R.id.button_r, "r");
         keyValues.put(R.id.button_t, "t");
         keyValues.put(R.id.button_y, "y");
         keyValues.put(R.id.button_u, "u");
@@ -192,7 +192,7 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener {
                 }
 
                 if (view.getId() == R.id.button_delete || view.getId() == R.id.button_puntoCom || view.getId() == R.id.button_puntoEs) {
-                    layoutParams.width = (int) (((float) height) * 1.5);
+                    layoutParams.width = (int) (((float) width) * 1.5);
                 }
 
                 view.setLayoutParams(layoutParams);
