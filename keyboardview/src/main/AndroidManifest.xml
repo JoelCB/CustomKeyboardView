@@ -1,2 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hcb.keyboardview" />
+    package="com.hcb.keyboardview" >
+
+    <application>
+        <service android:name=".KeyboardView" />
+    </application>
+</manifest>

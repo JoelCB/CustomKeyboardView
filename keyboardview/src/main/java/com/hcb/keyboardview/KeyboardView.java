@@ -5,6 +5,7 @@ import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.inputmethodservice.InputMethodService;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputConnection;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -27,11 +29,8 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener {
     private int height, width, fontSize;
     private int background, primaryColor, secundaryColor, primaryTextColor, secundaryTextColor;
 
-    private String text = "";
     private SparseArray<String> keyValues = new SparseArray<>();
-    private EditText editText;
-    private TextView textView;
-    private KeyboardListener listener;
+    private InputConnection inputConnection;
 
     public KeyboardView(Context context) {
         this(context, null, 0);
@@ -54,7 +53,7 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener {
         try {
             type = a.getInteger(R.styleable.KeyboardView_type, 0);
 
-            Resources r = getResources();
+            Resources r = context.getResources();
             float defaultFontSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 12, r.getDisplayMetrics());
             float defaultHeight = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30, r.getDisplayMetrics());
             float defaultWidth = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30, r.getDisplayMetrics());
@@ -204,34 +203,28 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener {
         }
     }
 
+    private String st = "";
+
     @Override
     public void onClick(View view) {
-        String oldText = text;
+        // do nothing if the InputConnection has not been set yet
+        if (inputConnection == null) return;
 
+        // Delete text or input key value
+        // All communication goes through the InputConnection
         if (view.getId() == R.id.button_delete) {
-            if (!TextUtils.isEmpty(text)) {
-                text = text.substring(0, text.length() - 1);
-
-                if(listener != null) {
-                    listener.onDelete(this, text, oldText);
-                }
+            CharSequence selectedText = inputConnection.getSelectedText(0);
+            if (TextUtils.isEmpty(selectedText)) {
+                // no selection, so delete previous character
+                inputConnection.deleteSurroundingText(1, 0);
+            } else {
+                // delete the selection
+                //inputConnection.commitText("", inputConnection);
             }
         } else {
             String value = keyValues.get(view.getId());
-            if(value != null) {
-                text += value;
-
-                if(listener != null) {
-                    listener.onAdd(this, value, text, oldText);
-                }
-            }
-        }
-
-        if(editText != null) {
-            editText.setText(text);
-        }
-        if(textView != null) {
-            textView.setText(text);
+            st += value;
+            inputConnection.setComposingText(value, 1);
         }
     }
 
@@ -239,16 +232,8 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener {
         init(context);
     }
 
-    public void setOutput(EditText editText) {
-        this.editText = editText;
-    }
-
-    public void setOutput(TextView textView) {
-        this.textView = textView;
-    }
-
-    public void setListener(KeyboardListener listener) {
-        this.listener = listener;
+    public void setInputConnection(InputConnection inputConnection) {
+        this.inputConnection = inputConnection;
     }
 
     public int getType() {
@@ -321,9 +306,5 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener {
 
     public void setSecundaryTextColor(int secundaryTextColor) {
         this.secundaryTextColor = secundaryTextColor;
-    }
-
-    public KeyboardListener getListener() {
-        return listener;
     }
 }
