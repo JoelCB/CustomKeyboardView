@@ -21,13 +21,14 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class KeyboardView extends LinearLayout implements View.OnClickListener {
+public class KeyboardView extends LinearLayout implements View.OnClickListener, View.OnLongClickListener {
     private final String DEFAULT_PRIMARY_COLOR = "#666766";
     private final String DEFUALT_SECONDARY_COLOR = "#404040";
 
     private int type;
     private int height, width, fontSize;
     private int background, primaryColor, secundaryColor, primaryTextColor, secundaryTextColor;
+    private boolean mayus;
 
     private SparseArray<String> keyValues = new SparseArray<>();
     private InputConnection inputConnection;
@@ -74,26 +75,38 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener {
 
 
     private void init(Context context) {
+        mayus = false;
         ViewGroup view = null;
 
-        if(type == 0) { // Email
+        if (type == 0) { // Email
             view = (ViewGroup) LayoutInflater.from(context).inflate(R.layout.component_email_keyboard, this, true);
-        } else if(type == 1) { // Normal
-            view = (ViewGroup) LayoutInflater.from(context).inflate(R.layout.component_email_keyboard, this, true);
+        } else if (type == 1) { // Normal
+            view = (ViewGroup) LayoutInflater.from(context).inflate(R.layout.component_textfree_keyboard, this, true);
         }
 
         setOnClicks(view);
-
-        keyValues.put(R.id.button_1, "1");
-        keyValues.put(R.id.button_2, "2");
-        keyValues.put(R.id.button_3, "3");
-        keyValues.put(R.id.button_4, "4");
-        keyValues.put(R.id.button_5, "5");
-        keyValues.put(R.id.button_6, "6");
-        keyValues.put(R.id.button_7, "7");
-        keyValues.put(R.id.button_8, "8");
-        keyValues.put(R.id.button_9, "9");
-        keyValues.put(R.id.button_0, "0");
+        if (type == 0) {
+            keyValues.put(R.id.button_1, "1");
+            keyValues.put(R.id.button_2, "2");
+            keyValues.put(R.id.button_3, "3");
+            keyValues.put(R.id.button_4, "4");
+            keyValues.put(R.id.button_5, "5");
+            keyValues.put(R.id.button_6, "6");
+            keyValues.put(R.id.button_7, "7");
+            keyValues.put(R.id.button_8, "8");
+            keyValues.put(R.id.button_9, "9");
+            keyValues.put(R.id.button_0, "0");
+            keyValues.put(R.id.button_guion, "-");
+            keyValues.put(R.id.button_arroba, "@");
+            keyValues.put(R.id.button_punto, ".");
+            keyValues.put(R.id.button_barra, "_");
+            keyValues.put(R.id.button_puntoCom, ".com");
+            keyValues.put(R.id.button_puntoEs, ".es");
+            keyValues.put(R.id.button_gmail, "gmail.com");
+            keyValues.put(R.id.button_hotmail, "hotmail.com");
+            keyValues.put(R.id.button_outlook, "outlook.com");
+            keyValues.put(R.id.button_yahoo, "yahoo.es");
+        }
         keyValues.put(R.id.button_q, "q");
         keyValues.put(R.id.button_w, "w");
         keyValues.put(R.id.button_e, "e");
@@ -113,7 +126,6 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener {
         keyValues.put(R.id.button_j, "j");
         keyValues.put(R.id.button_k, "k");
         keyValues.put(R.id.button_l, "l");
-        keyValues.put(R.id.button_guion, "-");
         keyValues.put(R.id.button_z, "z");
         keyValues.put(R.id.button_x, "x");
         keyValues.put(R.id.button_c, "c");
@@ -121,15 +133,8 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener {
         keyValues.put(R.id.button_b, "b");
         keyValues.put(R.id.button_n, "n");
         keyValues.put(R.id.button_m, "m");
-        keyValues.put(R.id.button_arroba, "@");
-        keyValues.put(R.id.button_punto, ".");
-        keyValues.put(R.id.button_barra, "_");
-        keyValues.put(R.id.button_puntoCom, ".com");
-        keyValues.put(R.id.button_puntoEs, ".es");
-        keyValues.put(R.id.button_gmail, "gmail.com");
-        keyValues.put(R.id.button_hotmail, "hotmail.com");
-        keyValues.put(R.id.button_outlook, "outlook.com");
-        keyValues.put(R.id.button_yahoo, "yahoo.es");
+        keyValues.put(R.id.button_ny, "ñ");
+        keyValues.put(R.id.button_espacio, " ");
     }
 
     private void setOnClicks(ViewGroup viewGroup) {
@@ -140,6 +145,8 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener {
             } else {
                 if (child != null) {
                     child.setOnClickListener(this);
+                    child.setOnLongClickListener(this);
+
                     applyStyle(child);
                 }
             }
@@ -160,7 +167,7 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener {
 
                 getRootView().setBackgroundTintList(ColorStateList.valueOf(background));
 
-                if(view.getBackgroundTintList() != null) {
+                if (view.getBackgroundTintList() != null) {
                     if (view.getBackgroundTintList().getDefaultColor() == Color.parseColor(DEFAULT_PRIMARY_COLOR)) {
                         view.setBackgroundTintList(ColorStateList.valueOf(primaryColor));
 
@@ -193,6 +200,10 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener {
                 if (view.getId() == R.id.button_delete || view.getId() == R.id.button_puntoCom || view.getId() == R.id.button_puntoEs) {
                     layoutParams.width = (int) (((float) width) * 1.5);
                 }
+                if (view.getId() == R.id.button_espacio) {
+                    layoutParams.width = (int) (((float) width) * 5);
+                }
+
 
                 view.setLayoutParams(layoutParams);
             } else {
@@ -221,12 +232,84 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener {
                 // delete the selection
                 //inputConnection.commitText("", inputConnection);
             }
-        } else {
-            String value = keyValues.get(view.getId());
+        } else if (view.getId() == R.id.button_mayus) {
+            mayus = !mayus;
+        } else{
+            String value;
+            value = keyValues.get(view.getId());
+            if(mayus){
+                value = value.toUpperCase();
+                mayus = !mayus;
+            }
             st += value;
             inputConnection.setComposingText(value, 1);
         }
+        if (mayus) {
+            inMayusCase();
+        } else {
+            inMinusCase();
+        }
     }
+
+    @Override
+    public boolean onLongClick(View v) {
+        if (inputConnection == null) return true;
+        String value = keyValues.get(v.getId()).toUpperCase();
+
+        if(isVowel(value)) {
+            switch (value.toLowerCase()){
+                case "a":
+                    value = "á";
+                    break;
+                case "e":
+                    value = "é";
+                    break;
+                case "i":
+                    value = "í";
+                    break;
+                case "o":
+                    value = "ó";
+                    break;
+                case "u":
+                    value = "ú";
+                    break;
+            }
+        }
+        if(mayus){
+            value = value.toUpperCase();
+            mayus =! mayus;
+        }
+        st += value;
+        inputConnection.setComposingText(value, 1);
+        if (mayus) {
+            inMayusCase();
+        } else {
+            inMinusCase();
+        }
+        return true;
+    }
+
+    public boolean isVowel(String c) {
+        return "AEIOUaeiou".contains(c);
+    }
+
+
+    public void inMayusCase() {
+        for (int i = 0; i < keyValues.size(); i++) {
+            int key = keyValues.keyAt(i);
+            Button btn = findViewById(key);
+            btn.setText(btn.getText().toString().toUpperCase());
+        }
+    }
+
+    public void inMinusCase() {
+        for (int i = 0; i < keyValues.size(); i++) {
+            int key = keyValues.keyAt(i);
+            Button btn = findViewById(key);
+            btn.setText(btn.getText().toString().toLowerCase());
+        }
+    }
+
 
     public void applyChanges(Context context) {
         init(context);
@@ -307,4 +390,6 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener {
     public void setSecundaryTextColor(int secundaryTextColor) {
         this.secundaryTextColor = secundaryTextColor;
     }
+
+
 }

@@ -24,9 +24,9 @@
         android:id="@+id/keyboard"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:keyHeight="30dp"
+        app:keyHeight="50dp"
         app:keyTextSize="10dp"
-        app:keyWidth="30dp"
+        app:keyWidth="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -35,6 +35,6 @@
         app:primaryKeyTextColor="@android:color/white"
         app:secondaryKeyColor="@color/colorPrimaryDark"
         app:secondaryKeyTextColor="@android:color/darker_gray"
-        app:type="email" />
+        app:type="simple_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
