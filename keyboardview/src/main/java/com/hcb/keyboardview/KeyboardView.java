@@ -232,6 +232,9 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener, 
                 // delete the selection
                 //inputConnection.commitText("", inputConnection);
             }
+        }else if (view.getId() == R.id.button_aceptar || view.getId() == R.id.button_atras || view.getId() == R.id.button_hide) {
+
+
         } else if (view.getId() == R.id.button_mayus) {
             mayus = !mayus;
         } else{
@@ -244,49 +247,46 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener, 
             st += value;
             inputConnection.setComposingText(value, 1);
         }
-        if (mayus) {
-            inMayusCase();
-        } else {
-            inMinusCase();
-        }
+        inMayusCase();
     }
 
     @Override
     public boolean onLongClick(View v) {
         if (inputConnection == null) return true;
-        String value = keyValues.get(v.getId()).toUpperCase();
-
-        if(isVowel(value)) {
-            switch (value.toLowerCase()){
-                case "a":
-                    value = "á";
-                    break;
-                case "e":
-                    value = "é";
-                    break;
-                case "i":
-                    value = "í";
-                    break;
-                case "o":
-                    value = "ó";
-                    break;
-                case "u":
-                    value = "ú";
-                    break;
+        int id = v.getId();
+        if(id == R.id.button_aceptar || id == R.id.button_atras || id == R.id.button_hide || id == R.id.button_delete || id == R.id.button_mayus) {
+            return false;
+        }else{
+            String value = keyValues.get(v.getId()).toUpperCase();
+            if (isVowel(value)) {
+                switch (value.toLowerCase()) {
+                    case "a":
+                        value = "á";
+                        break;
+                    case "e":
+                        value = "é";
+                        break;
+                    case "i":
+                        value = "í";
+                        break;
+                    case "o":
+                        value = "ó";
+                        break;
+                    case "u":
+                        value = "ú";
+                        break;
+                }
+                if (mayus) {
+                    value = value.toUpperCase();
+                    mayus = !mayus;
+                }
+                st += value;
+                inputConnection.setComposingText(value, 1);
+                inMayusCase();
+                return true;
             }
         }
-        if(mayus){
-            value = value.toUpperCase();
-            mayus =! mayus;
-        }
-        st += value;
-        inputConnection.setComposingText(value, 1);
-        if (mayus) {
-            inMayusCase();
-        } else {
-            inMinusCase();
-        }
-        return true;
+        return false;
     }
 
     public boolean isVowel(String c) {
@@ -296,20 +296,16 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener, 
 
     public void inMayusCase() {
         for (int i = 0; i < keyValues.size(); i++) {
-            int key = keyValues.keyAt(i);
-            Button btn = findViewById(key);
-            btn.setText(btn.getText().toString().toUpperCase());
+            Button btn = findViewById(keyValues.keyAt(i));
+            if(mayus) {
+                btn.setText(btn.getText().toString().toUpperCase());
+            }else{
+                btn.setText(btn.getText().toString().toLowerCase());
+            }
         }
+        Button btn = findViewById(R.id.button_espacio);
+        btn.setText("Espacio");
     }
-
-    public void inMinusCase() {
-        for (int i = 0; i < keyValues.size(); i++) {
-            int key = keyValues.keyAt(i);
-            Button btn = findViewById(key);
-            btn.setText(btn.getText().toString().toLowerCase());
-        }
-    }
-
 
     public void applyChanges(Context context) {
         init(context);

@@ -170,15 +170,7 @@
             android:text="l" />
 
         <Button
-            android:id="@+id/button_l2"
-            style="@style/KeyboardkeyStyleNormalButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="l" />
-
-        <Button
-            android:id="@+id/button_mayus2"
+            android:id="@+id/button_aceptar"
             style="@style/KeyboardkeyStyleNormalButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
