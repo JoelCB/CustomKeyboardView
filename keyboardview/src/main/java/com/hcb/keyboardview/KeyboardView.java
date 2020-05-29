@@ -21,7 +21,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class KeyboardView extends LinearLayout implements View.OnClickListener, View.OnLongClickListener {
+public class KeyboardView extends LinearLayout implements View.OnClickListener {
     private final String DEFAULT_PRIMARY_COLOR = "#666766";
     private final String DEFUALT_SECONDARY_COLOR = "#404040";
 
@@ -29,9 +29,10 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener, 
     private int height, width, fontSize;
     private int background, primaryColor, secundaryColor, primaryTextColor, secundaryTextColor;
     private boolean mayus;
-
     private SparseArray<String> keyValues = new SparseArray<>();
     private InputConnection inputConnection;
+    private EditText editText;
+    private TextView textView;
 
     public KeyboardView(Context context) {
         this(context, null, 0);
@@ -145,7 +146,7 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener, 
             } else {
                 if (child != null) {
                     child.setOnClickListener(this);
-                    child.setOnLongClickListener(this);
+                    //child.setOnLongClickListener(this);
 
                     applyStyle(child);
                 }
@@ -250,7 +251,7 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener, 
         inMayusCase();
     }
 
-    @Override
+    /*@Override
     public boolean onLongClick(View v) {
         if (inputConnection == null) return true;
         int id = v.getId();
@@ -287,7 +288,7 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener, 
             }
         }
         return false;
-    }
+    }*/
 
     public boolean isVowel(String c) {
         return "AEIOUaeiou".contains(c);
@@ -309,6 +310,14 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener, 
 
     public void applyChanges(Context context) {
         init(context);
+    }
+
+    public void setOutput(EditText editText) {
+        this.editText = editText;
+    }
+
+    public void setOutput(TextView textView) {
+        this.textView = textView;
     }
 
     public void setInputConnection(InputConnection inputConnection) {
