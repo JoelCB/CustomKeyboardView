@@ -206,8 +206,6 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener {
                 if (view.getId() == R.id.button_espacio) {
                     layoutParams.width = (int) (((float) width) * 5);
                 }
-
-
                 view.setLayoutParams(layoutParams);
             } else {
                 view.setBackgroundTintList(ColorStateList.valueOf(secundaryTextColor));
@@ -220,7 +218,10 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         String oldText = text;
-
+        if (view.getId() == R.id.button_mayus) {
+            mayus = !mayus;
+            inMayusCase();
+        }
         if (view.getId() == R.id.button_delete) {
             if (!TextUtils.isEmpty(text)) {
                 text = text.substring(0, text.length() - 1);
@@ -232,6 +233,10 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener {
         } else {
             String value = keyValues.get(view.getId());
             if(value != null) {
+                if (mayus) {
+                    value = value.toUpperCase();
+                    mayus = !mayus;
+                }
                 text += value;
 
                 if(listener != null) {
@@ -246,6 +251,8 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener {
         if(textView != null) {
             textView.setText(text);
         }
+        inMayusCase();
+
     }
 
     /*@Override
