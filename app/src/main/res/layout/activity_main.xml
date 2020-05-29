@@ -7,14 +7,12 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <EditText
+    <TextView
         android:id="@+id/txtOutput"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
         android:layout_marginTop="32dp"
-        android:layout_marginRight="32dp"
-        android:hint="Insert your text here..."
+        android:text="Hello World!"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,9 +22,9 @@
         android:id="@+id/keyboard"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:keyHeight="50dp"
+        app:keyHeight="30dp"
         app:keyTextSize="10dp"
-        app:keyWidth="50dp"
+        app:keyWidth="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -35,6 +33,6 @@
         app:primaryKeyTextColor="@android:color/white"
         app:secondaryKeyColor="@color/colorPrimaryDark"
         app:secondaryKeyTextColor="@android:color/darker_gray"
-        app:type="simple_text" />
+        app:type="email" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

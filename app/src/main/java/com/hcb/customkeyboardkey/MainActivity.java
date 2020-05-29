@@ -14,7 +14,7 @@ import com.hcb.keyboardview.KeyboardListener;
 import com.hcb.keyboardview.KeyboardView;
 
 public class MainActivity extends AppCompatActivity {
-    private EditText edOutput;
+    private TextView txtOutput;
     private KeyboardView keyboard;
 
     @Override
@@ -22,15 +22,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        edOutput = findViewById(R.id.txtOutput);
+        txtOutput = findViewById(R.id.txtOutput);
         keyboard = findViewById(R.id.keyboard);
 
-        // prevent system keyboard from appearing when EditText is tapped
-        edOutput.setRawInputType(InputType.TYPE_CLASS_TEXT);
-        edOutput.setTextIsSelectable(true);
+        keyboard.setOutput(txtOutput);
 
-        // pass the InputConnection from the EditText to the keyboard
-        InputConnection ic = edOutput.onCreateInputConnection(new EditorInfo());
-        keyboard.setInputConnection(ic);
+        keyboard.setListener(new KeyboardListener() {
+            @Override
+            public void onAdd(KeyboardView keyboardView, String dataAdded, String newText, String oldText) {
+                Log.i("Keyboard_OnAdd", "Added: " + dataAdded +" - New text: " + newText);
+            }
+
+            @Override
+            public void onDelete(KeyboardView keyboardView, String newText, String oldText) {
+                Log.i("Keyboard_OnDelete",  "New text: " + newText);
+            }
+        });
     }
 }
