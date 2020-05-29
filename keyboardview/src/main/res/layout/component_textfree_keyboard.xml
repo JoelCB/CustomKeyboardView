@@ -26,7 +26,8 @@
             android:fontFamily="@font/text"
             android:text="Mantén la tecla pulsada para usar acentos"
             android:textColor="@android:color/white"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:visibility="gone" />
 
     </LinearLayout>
 
