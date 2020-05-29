@@ -33,6 +33,6 @@
         app:primaryKeyTextColor="@android:color/white"
         app:secondaryKeyColor="@color/colorPrimaryDark"
         app:secondaryKeyTextColor="@android:color/darker_gray"
-        app:type="simple_text" />
+        app:type="email" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

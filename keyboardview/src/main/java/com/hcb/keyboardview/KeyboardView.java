@@ -251,7 +251,9 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener {
         if(textView != null) {
             textView.setText(text);
         }
-        inMayusCase();
+        if(type != 0) {
+            inMayusCase();
+        }
 
     }
 
