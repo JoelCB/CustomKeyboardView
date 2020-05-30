@@ -204,7 +204,7 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener {
                     layoutParams.width = (int) (((float) width) * 1.5);
                 }
                 if (view.getId() == R.id.button_espacio) {
-                    layoutParams.width = (int) (((float) width) * 5);
+                    layoutParams.width = (int) (((float) width) * 7);
                 }
                 view.setLayoutParams(layoutParams);
             } else {
