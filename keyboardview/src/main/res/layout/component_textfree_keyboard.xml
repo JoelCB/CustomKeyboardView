@@ -186,6 +186,14 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/button_inter"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="?" />
+
+        <Button
             android:id="@+id/button_z"
             style="@style/KeyboardkeyStyleNormalButton"
             android:text="z" />
@@ -227,6 +235,14 @@
             android:layout_height="wrap_content"
             android:text="ñ" />
 
+        <Button
+            android:id="@+id/button_cetra"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="ç" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -237,10 +253,25 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/button_coma"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="," />
+
+        <Button
             android:id="@+id/button_espacio"
             style="@style/KeyboardkeyStyleDarkButton"
             android:layout_weight="1"
             android:text="Espacio" />
+
+        <Button
+            android:id="@+id/button_punto"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="." />
 
     </LinearLayout>
 
