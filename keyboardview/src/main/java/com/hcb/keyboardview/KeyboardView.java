@@ -30,7 +30,6 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener {
     private int background, primaryColor, secundaryColor, primaryTextColor, secundaryTextColor;
     private boolean mayus;
 
-    private String text = "";
     private SparseArray<String> keyValues = new SparseArray<>();
     private EditText editText;
     private TextView textView;
@@ -217,7 +216,15 @@ public class KeyboardView extends LinearLayout implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        String oldText = text;
+        String oldText = "";
+
+        if(editText != null) {
+            oldText = editText.getText().toString();
+        } else if(textView != null) {
+            oldText = textView.getText().toString();
+        }
+        String text = oldText;
+
         if (view.getId() == R.id.button_mayus) {
             mayus = !mayus;
             inMayusCase();
