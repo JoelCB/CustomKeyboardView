@@ -39,13 +39,6 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button_atras"
-            style="@style/KeyboardkeyStyleDarkButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="atrás" />
-
-        <Button
             android:id="@+id/button_q"
             style="@style/KeyboardkeyStyleNormalButton"
             android:text="q" />
@@ -171,7 +164,7 @@
             android:text="l" />
 
         <Button
-            android:id="@+id/button_aceptar"
+            android:id="@+id/button_mayus"
             style="@style/KeyboardkeyStyleNormalButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -180,7 +173,7 @@
             android:layout_marginEnd="4dip"
             android:layout_marginRight="8dip"
             android:layout_weight="1"
-            android:text="Aceptar"
+            android:text="Mayus."
             android:textSize="14sp" />
 
     </LinearLayout>
@@ -191,6 +184,14 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_inter"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="?" />
 
         <Button
             android:id="@+id/button_z"
@@ -234,6 +235,14 @@
             android:layout_height="wrap_content"
             android:text="ñ" />
 
+        <Button
+            android:id="@+id/button_cetra"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="ç" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -243,14 +252,13 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/button_hide"
-            style="@style/KeyboardkeyStyleDarkButton"
-            android:layout_width="100dp"
+        <Button
+            android:id="@+id/button_coma"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:src="@drawable/ic_group"
-            android:tint="#A3A2A2" />
+            android:layout_weight="1"
+            android:text="," />
 
         <Button
             android:id="@+id/button_espacio"
@@ -258,21 +266,12 @@
             android:layout_weight="1"
             android:text="Espacio" />
 
-        <ImageButton
-            android:id="@+id/button_hide"
-            style="@style/KeyboardkeyStyleDarkButton"
-            android:layout_width="100dp"
+        <Button
+            android:id="@+id/button_punto"
+            style="@style/KeyboardkeyStyleNormalButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:adjustViewBounds="false"
-            android:cropToPadding="false"
-            android:focusableInTouchMode="false"
-            android:foregroundGravity="center|right"
-            android:foregroundTintMode="add"
-            android:hapticFeedbackEnabled="false"
-            android:scaleType="center"
-            android:src="@drawable/ic_group"
-            android:tint="#A3A2A2" />
+            android:text="." />
 
     </LinearLayout>
 
